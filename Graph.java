@@ -1,6 +1,6 @@
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   FNU Syed Moosa Aleem / Comp 272 MS in CS
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -103,8 +103,29 @@ public class Graph {
    */
   
   public int findRoot() {
+    // Step 1: Create an array to store in-degrees of all vertices
+    int[] inDegree = new int[numVertices];
 
-    // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME/SECTION AT TOP OF FILE
-    return -1;
+    // Step 2: Calculate in-degrees by iterating through adjacency list
+    for (int i = 0; i < numVertices; i++) {
+      for (int neighbor : adjListArr[i]) {
+        inDegree[neighbor]++;
+      }
+    }
+
+    // Step 3: Find the root vertex (in-degree of 0)
+    int root = -1;
+    for (int i = 0; i < numVertices; i++) {
+      if (inDegree[i] == 0) {
+        if (root != -1) {
+          // If more than one root exists, return -1
+          return -1;
+        }
+        root = i;
+      }
+    }
+
+    // Step 4: If no root is found or more than one root exists, return -1
+    return root == -1 ? -1 : vertexValues.get(root);
   } 
 }
